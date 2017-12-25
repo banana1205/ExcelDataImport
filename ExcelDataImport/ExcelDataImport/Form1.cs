@@ -254,17 +254,32 @@ namespace ExcelDataImport
         private void btn_Import_Click(object sender, EventArgs e)
         {
             List<string> columnStr = new List<string>();
+            List<string> keyStr = new List<string>();
             for (int i = 0; i < tcL_xml.Count; i++)
             {
                 columnStr.Add(tcL_xml[i].Name);
+                if (tcL_xml[i].Key > 0)
+                {
+                    keyStr.Add(tcL_xml[i].Name);
+                }
             }
 
             StringBuilder import_sql = new StringBuilder();//导入的SQL语句
+            if (keyStr.Count > 0)
+            {
+                import_sql.AppendFormat(" if exists (select * from {0} where ", table_import);
+                for (int k = 0; k > keyStr.Count; k++)
+                {
+                    import_sql.AppendFormat(" {0}=@{1} ", keyStr[0], keyStr[0]);
+                }
+            }
+
             import_sql.AppendFormat(" INSERT INTO {0} ( ", table_import);
             import_sql.AppendFormat(" {0} ", string.Join(",", columnStr.ToArray()));
             import_sql.Append(" ) VALUES ( ");
             import_sql.AppendFormat(" @{0} ", string.Join(",@", columnStr.ToArray()));
             import_sql.Append(" ) ");
+
             List<SqlParameter[]> paramList = new List<SqlParameter[]>();
             foreach (DataRow dr in dt_view.Rows)
             {
