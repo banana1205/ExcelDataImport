@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<root>
+  <column>
+    <name>Name</name>
+    <title>姓名</title>
+    <type>string</type>
+  </column>
+  <column>
+    <name>IDCard</name>
+    <title>身份证号码</title>
+    <type>string</type>
+    <key>1</key>
+  </column>
+  <column>
+    <name>PersonType</name>
+    <title>人员类型</title>
+    <type>string</type>
+  </column>
+</root>

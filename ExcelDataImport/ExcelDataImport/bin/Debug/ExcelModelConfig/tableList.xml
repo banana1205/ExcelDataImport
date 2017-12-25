@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<root>
+  <table>
+    <name>Personnel</name>
+    <title>人员信息表</title>
+  </table>
+  <table>
+    <name>InOutRecord</name>
+    <title>进出记录表</title>
+  </table>
+</root>
